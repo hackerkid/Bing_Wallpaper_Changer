@@ -6,11 +6,19 @@ from os.path import expanduser
 import gconf
 import os
 import commands
+import ctypes 
+
 market = 'en-US'
 resolution = '1920x1080'
 Dir = expanduser("~" + '/usr/share/backgrounds')
 WallpaperName = 'wallpaper.jpg'
 
+#The below method is for windows, uncomment the method call in the script at the bottom 
+#and comment the setw() method which is for linux
+'''
+	SPI_SETDESKWALLPAPER = 20
+	ctypes.windll.user32.SystemParametersInfoA(SPI_SETDESKWALLPAPER,0,"path/to/image",0)
+'''
 def setw():
 	os.system('gsettings set org.gnome.desktop.background picture-uri file://' + Dir + WallpaperName)
 	return
